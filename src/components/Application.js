@@ -22,28 +22,27 @@ export default function Application(props) {
     appointments: {},
     interviewers: {},
   });
-  const dailyAppointments = getAppointmentsForDay(state, day);
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
 
-  const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
+  // const schedule = appointments.map((appointment) => {
+  //   const interview = getInterview(state, appointment.interview);
 
-    return (
-      <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-      />
-    );
-  });
+  //   return (
+  //     <Appointment
+  //       key={appointment.id}
+  //       id={appointment.id}
+  //       time={appointment.time}
+  //       interview={interview}
+  //     />
+  //   );
+  // });
   const [getInterviewer, setInterviewer] = useState(1);
   const setDay = (day) => setState({ ...state, day });
 
   useEffect(() => {
-    const apiURL = "http://localhost:8001";
-    const first = axios.get(`${apiURL}/api/days`);
-    const second = axios.get(`${apiURL}/api/appointments`);
-    const third = axios.get(`${apiURL}/api/interviewers`);
+    const first = axios.get(`/api/days`);
+    const second = axios.get(`/api/appointments`);
+    const third = axios.get(`/api/interviewers`);
     Promise.all([first, second, third]).then((response) => {
       console.log(response);
       setState((prev) => ({
