@@ -13,44 +13,7 @@ const interviewers = [
   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" },
 ];
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer:{
-//         id: 3,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Archie Andrews",
-//       interviewer:{
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       }
-//     }
-//   },
-//   {
-//     id: 5,
-//     time: "4pm",
-//   }
-// ];
+
 
 export default function Application(props) {
   const [state, setState] = useState({
@@ -58,6 +21,7 @@ export default function Application(props) {
     days: [],
     // you may put the line below, but will have to remove/comment hardcoded appointments variable
     appointments: {},
+    interviewers: {}
   });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const [getInterviewer, setInterviewer] = useState(1);
@@ -66,15 +30,16 @@ export default function Application(props) {
 
   useEffect(() => {
     const baseURL = "http://localhost:8001"
-    const promOne = axios.get(`${baseURL}/api/days`)
-    const promTwo = axios.get(`${baseURL}/api/appointments`)
-    const promThree = axios.get(`${baseURL}/api/interviewers`)
-    Promise.all([promOne, promTwo, promThree])
-    .then(resArr => {
-      console.log(resArr);
-      setState(prev => ({...prev, days:resArr[0].data, appointments:resArr[1].data, interviewers:resArr[2].data}))}
+    const first = axios.get(`${baseURL}/api/days`)
+    const second = axios.get(`${baseURL}/api/appointments`)
+    const third = axios.get(`${baseURL}/api/interviewers`)
+    Promise.all([first, second, third])
+    .then(response => {
+      console.log(response);
+      setState(prev => ({...prev, days:response[0].data, appointments:response[1].data, interviewers:response[2].data}))}
       )
   }, [])
+  console.log(state.interviewers);
 
   return (
     <main className="layout">
