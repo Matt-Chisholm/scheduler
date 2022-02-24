@@ -12,4 +12,16 @@ function getAppointmentsForDay(state, day) {
   return answer;
 }
 
+function getInterview(state, interview) {
+  const answer = {};
+  if (interview) {
+    answer["student"] = interview.student;
+    answer["interviewer"] = state.interviewers[interview.interviewer]
+  } else {
+    return null;
+  }
+  return answer;
+}
+
 export default getAppointmentsForDay;
+export { getInterview };
