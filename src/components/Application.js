@@ -4,64 +4,15 @@ import "components/Application.scss";
 import DayList from "./DayList";
 import InterviewerList from "./InterviewerList";
 import Appointment from "./Appointment";
-import getAppointmentsForDay from "./helpers/selectors";
+import getAppointmentsForDay, { getInterview } from "./helpers/selectors";
 import { getInterviewersForDay } from "./helpers/selectors";
+import useApplicationData from "./Appointment/hooks/useApplicationData";
 
 export default function Application(props) {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
-    appointments: {},
-    interviewers: {},
-  });
+  const {state, setDay, bookInterview, cancelInterview} = useApplicationData();
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   const [getInterviewer, setInterviewer] = useState(1);
-  const setDay = (day) => setState({ ...state, day });
-
-  function bookInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-    setState({
-      ...state,
-      appointments,
-    });
-    return axios.put(`/api/appointments/${id}`, appointment);
-  }
-
-  function cancelInterview(id, interview) {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null,
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
-    setState({ ...state, appointments });
-    return axios.delete(`/api/appointments/${id}`, appointment);
-  }
-
-  useEffect(() => {
-    const first = axios.get(`/api/days`);
-    const second = axios.get(`/api/appointments`);
-    const third = axios.get(`/api/interviewers`);
-    Promise.all([first, second, third]).then((response) => {
-      setState((prev) => ({
-        ...prev,
-        days: response[0].data,
-        appointments: response[1].data,
-        interviewers: response[2].data,
-      }));
-    });
-  }, []);
 
   return (
     <main className="layout">
@@ -95,6 +46,8 @@ export default function Application(props) {
         {dailyAppointments.map((appointment) => (
           <Appointment
             key={appointment.id}
+            id={appointment.id}
+            interview={getInterview(state, appointment.interview)}
             interviewer={dailyInterviewers}
             {...appointment}
             bookInterview={bookInterview}
