@@ -12,11 +12,25 @@ function getAppointmentsForDay(state, day) {
   return answer;
 }
 
+function getInterviewersForDay(state, day) {
+  const answer = [];
+  for (const elem of state.days) {
+    if (elem.name === day) {
+      for (const appt in state.interviewers) {
+        if (state.interviewers[appt]) {
+          answer.push(state.interviewers[appt]);
+        }
+      }
+    }
+  }
+  return answer;
+}
+
 function getInterview(state, interview) {
   const answer = {};
   if (interview) {
     answer["student"] = interview.student;
-    answer["interviewer"] = state.interviewers[interview.interviewer]
+    answer["interviewer"] = state.interviewers[interview.interviewer];
   } else {
     return null;
   }
@@ -24,4 +38,4 @@ function getInterview(state, interview) {
 }
 
 export default getAppointmentsForDay;
-export { getInterview };
+export { getInterview, getInterviewersForDay };
