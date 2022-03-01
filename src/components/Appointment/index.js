@@ -10,7 +10,6 @@ import Confirm from "./Confirm";
 import useVisualMode from "./hooks/useVisualMode";
 
 export default function Appointment(props) {
-  console.log(props.interview);
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
