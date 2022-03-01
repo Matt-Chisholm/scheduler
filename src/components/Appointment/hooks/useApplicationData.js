@@ -25,7 +25,7 @@ export default function useApplicationData() {
 
     const foundDay = state.days.find((day) => day.appointments.includes(id));
 
-    const days = state.days.map((day, index) => {
+    const days = state.days.map((day) => {
       if (
         day.name === foundDay.name &&
         state.appointments[id].interview === null
@@ -58,14 +58,14 @@ export default function useApplicationData() {
 
     const foundDay = state.days.find((day) => day.appointments.includes(id));
 
-    const days = state.days.map((day, index) => {
+    const days = state.days.map((day) => {
       if (day.name === foundDay.name) {
         return { ...day, spots: day.spots + 1 };
       } else {
         return day;
       }
     });
-    
+
     return axios.delete(`/api/appointments/${id}`, appointment).then(() => {
       setState({ ...state, appointments, days });
     });
