@@ -8,15 +8,6 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {},
   });
-  const findDayIndex = () => {
-    let dayIndex;
-    state.days.filter((day) => {
-      if (day.name === state.day) {
-        dayIndex = day.id;
-      }
-    });
-    return dayIndex - 1;
-  };
   const setDay = (day) => setState({ ...state, day });
   function bookInterview(id, interview) {
     const appointment = {
