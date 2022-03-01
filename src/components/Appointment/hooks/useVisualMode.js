@@ -6,11 +6,11 @@ export default function useVisualMode(initial) {
 
   const transition = function (newMode, replace = false) {
     if (replace) {
-      setMode(newMode)
-      setHistory((prev) => [...prev])
+      setMode(newMode);
+      setHistory((prev) => [...prev]);
     } else {
-      setMode(newMode)
-      setHistory((prev) => [...prev, newMode])
+      setMode(newMode);
+      setHistory((prev) => [...prev, newMode]);
     }
     console.log(history);
   };

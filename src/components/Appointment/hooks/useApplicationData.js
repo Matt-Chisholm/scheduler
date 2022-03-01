@@ -5,7 +5,6 @@ export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
     appointments: {},
     interviewers: {},
   });
@@ -15,9 +14,9 @@ export default function useApplicationData() {
       if (day.name === state.day) {
         dayIndex = day.id;
       }
-    })
+    });
     return dayIndex - 1;
-  }
+  };
   const setDay = (day) => setState({ ...state, day });
   function bookInterview(id, interview) {
     const appointment = {
@@ -30,7 +29,10 @@ export default function useApplicationData() {
     };
     const foundDay = state.days.find((day) => day.appointments.includes(id));
     const days = state.days.map((day, index) => {
-      if (day.name === foundDay.name && state.appointments[id].interview === null) {
+      if (
+        day.name === foundDay.name &&
+        state.appointments[id].interview === null
+      ) {
         return { ...day, spots: day.spots - 1 };
       } else {
         return day;
@@ -41,7 +43,7 @@ export default function useApplicationData() {
       setState({
         ...state,
         appointments,
-        days
+        days,
       });
     });
   }
@@ -82,5 +84,5 @@ export default function useApplicationData() {
     });
   }, []);
 
-  return {state, setDay, bookInterview, cancelInterview}
+  return { state, setDay, bookInterview, cancelInterview };
 }

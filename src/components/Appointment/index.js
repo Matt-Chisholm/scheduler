@@ -10,7 +10,7 @@ import Confirm from "./Confirm";
 import useVisualMode from "./hooks/useVisualMode";
 
 export default function Appointment(props) {
-  console.log(props.interview)
+  console.log(props.interview);
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -27,31 +27,32 @@ export default function Appointment(props) {
   function save(name, interviewer) {
     const interview = {
       student: name,
-      interviewer
+      interviewer,
     };
-  
+
     transition(SAVING);
-  
+
     props
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE, true));
-  };
+      .catch((error) => transition(ERROR_SAVE, true));
+  }
 
   function deleteAppt() {
     transition(DELETING, true);
-    props.cancelInterview(props.id)
+    props
+      .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE, true));
-  };
+      .catch((error) => transition(ERROR_DELETE, true));
+  }
 
   function deleteConfirmation() {
     transition(CANCEL);
-  };
+  }
 
   function editAppt() {
     transition(EDIT);
-  };
+  }
 
   return (
     <article className="appointment">
@@ -87,8 +88,12 @@ export default function Appointment(props) {
           value={props.interview.student}
         />
       )}
-      { mode === ERROR_SAVE && <Error message="Could not save." onClose={() => back()}/>}
-      { mode === ERROR_DELETE && <Error message="Could not delete." onClose={() => back()}/>}
+      {mode === ERROR_SAVE && (
+        <Error message="Could not save." onClose={() => back()} />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error message="Could not delete." onClose={() => back()} />
+      )}
     </article>
   );
 }

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment } from "react";
 
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -122,7 +122,7 @@ storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
   })
-  .add("Initial", () => <InterviewerList interviewers={interviewers}/>)
+  .add("Initial", () => <InterviewerList interviewers={interviewers} />)
   .add("Selected", () => (
     <InterviewerList interviewers={interviewers} value={3} />
   ))
@@ -181,6 +181,4 @@ storiesOf("Appointment", module)
       <Appointment id={1} time="4pm" />
       <Appointment time="5pm" />
     </Fragment>
-  ))
-
-
+  ));
