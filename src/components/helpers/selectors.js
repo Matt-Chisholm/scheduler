@@ -1,8 +1,8 @@
 function getAppointmentsForDay(state, day) {
   const answer = [];
-  for (const elem of state.days) {
-    if (elem.name === day) {
-      for (const appt of elem.appointments) {
+  for (const arrDay of state.days) {
+    if (arrDay.name === day) {
+      for (const appt of arrDay.appointments) {
         if (state.appointments[appt]) {
           answer.push(state.appointments[appt]);
         }
@@ -14,8 +14,8 @@ function getAppointmentsForDay(state, day) {
 
 function getInterviewersForDay(state, day) {
   const answer = [];
-  for (const elem of state.days) {
-    if (elem.name === day) {
+  for (const arrDay of state.days) {
+    if (arrDay.name === day) {
       for (const appt in state.interviewers) {
         if (state.interviewers[appt]) {
           answer.push(state.interviewers[appt]);

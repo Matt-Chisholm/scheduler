@@ -65,7 +65,11 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
-          interviewers={props.interviewer[props.interview.interviewer -1] ? props.interviewer[props.interview.interviewer - 1].name : 'No interviewer selected'}
+          interviewers={
+            props.interviewer[props.interview.interviewer - 1]
+              ? props.interviewer[props.interview.interviewer - 1].name
+              : "No interviewer selected"
+          }
           onDelete={deleteConfirmation}
           onEdit={editAppt}
         />
