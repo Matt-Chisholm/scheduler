@@ -6,6 +6,8 @@ This project was a great introduction to React for me and also introduced me to 
 ## Screenshots 
 Home (Showing form)
 ![Home/While Editing](https://github.com/Matt-Chisholm/scheduler/blob/master/docs/Deleting.png?raw=true)
+
+
 (While Deleting)
 ![Deleting](https://github.com/Matt-Chisholm/scheduler/blob/master/docs/Deleting.png?raw=true)
 
