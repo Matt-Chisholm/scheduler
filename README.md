@@ -4,11 +4,11 @@ Welcome to my scheduler app for LHL appointments. This webapp was developed with
 This project was a great introduction to React for me and also introduced me to new testing frameworks such as Storybook, Jest and Cypress.
 
 ## Screenshots 
-Home (Showing form)
-![Home/While Editing](https://github.com/Matt-Chisholm/scheduler/blob/master/docs/Deleting.png?raw=true)
+
+![Home/While Editing](https://github.com/Matt-Chisholm/scheduler/blob/master/docs/Edit.png?raw=true)
 
 
-(While Deleting)
+
 ![Deleting](https://github.com/Matt-Chisholm/scheduler/blob/master/docs/Deleting.png?raw=true)
 
 ## Setup
