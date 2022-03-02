@@ -1,6 +1,7 @@
 import React from "react";
 import DayListItem from "./DaylistItem";
 
+// Day List Component 
 export default function DayList(props) {
   return (
     <ul>

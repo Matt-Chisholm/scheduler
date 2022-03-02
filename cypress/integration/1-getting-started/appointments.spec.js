@@ -1,3 +1,4 @@
+//Cypress Tests for Appointments
 describe("Appointments", () => {
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");

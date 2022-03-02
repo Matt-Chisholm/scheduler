@@ -8,12 +8,15 @@ import { getInterviewersForDay } from "./helpers/selectors";
 import useApplicationData from "./Appointment/hooks/useApplicationData";
 
 export default function Application(props) {
+  
+  // Setting up needed states and data types for appointments and interviewers
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
   const [getInterviewer, setInterviewer] = useState(1);
 
+// Main Application Component
   return (
     <main className="layout">
       <section className="sidebar">

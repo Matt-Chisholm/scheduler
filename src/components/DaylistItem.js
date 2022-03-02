@@ -4,11 +4,13 @@ import "components/DayListItem.scss";
 
 export default function DayListItem(props) {
   
+  // Assigning proper classes to different views of appointments
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": !props.spots,
   });
 
+  // Formating remaining spots for each day
   const formatSpots = function () {
     if (props.spots === 0) {
       return "no spots remaining";
@@ -19,6 +21,7 @@ export default function DayListItem(props) {
     return props.spots + " spots remaining";
   };
 
+  // Day List Item (Each Day) Component
   return (
     <li className={dayClass} onClick={props.setDay}>
       <h2 className="text--regular">{props.name}</h2>
