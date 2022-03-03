@@ -28,7 +28,7 @@ export default function useApplicationData() {
     const days = state.days.map((day) => {
       if (
         day.name === foundDay.name &&
-        state.appointments[id].interview === null
+        !state.appointments[id].interview
       ) {
         return { ...day, spots: day.spots - 1 };
       } else {
