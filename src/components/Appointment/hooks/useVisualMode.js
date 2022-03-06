@@ -18,6 +18,7 @@ export default function useVisualMode(initial) {
   const back = () => {
     const pastHistory = history.length > 1 ? history.slice(0, -1) : initial;
     setHistory(pastHistory);
+    console.log(history);
     setMode(
       Array.isArray(pastHistory)
         ? pastHistory[pastHistory.length - 1]
