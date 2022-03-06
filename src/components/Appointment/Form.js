@@ -16,10 +16,14 @@ export default function Form(props) {
     reset();
     props.onCancel();
   };
-
+  // Validation to ensure user picks an interviewer and enters a name in input
   const validate = () => {
     if (student === "") {
       setError("Student name cannot be blank");
+      return;
+    }
+    if (interviewer === null) {
+      setError("Must pick an interviewer!")
       return;
     }
     setError("");
@@ -35,9 +39,10 @@ export default function Form(props) {
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
-            placeholder={props.value || "Enter Student Name"}
+            placeholder={props.name || "Enter Student Name"}
             onChange={(event) => {
               setStudent(event.target.value);
+              event.preventDefault();
             }}
             value={student}
           />
