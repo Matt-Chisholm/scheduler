@@ -6,12 +6,12 @@ export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
-
+  // Function to clear interviewer and student states
   const reset = () => {
     setStudent("");
     setInterviewer(null);
   };
-
+  // Function to reset and call onCancel
   const cancel = () => {
     reset();
     props.onCancel();
@@ -23,12 +23,12 @@ export default function Form(props) {
       return;
     }
     if (interviewer === null) {
-      setError("Must pick an interviewer!")
+      setError("Must pick an interviewer!");
       return;
     }
     setError("");
     props.onSave(student, interviewer);
-  }
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
